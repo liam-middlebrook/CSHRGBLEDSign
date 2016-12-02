@@ -56,10 +56,19 @@ int main()
 
 void setColor(const char* color)
 {
+    // Convert he hexstring to an int
     int colorVal = (int)strtol(color, nullptr, 16);
+
+    // Get the MSB chunk from the str
     float r = (colorVal >> 16) / 255.0f;
+
+    // Get the middle chunk
     float g = (colorVal >> 8 & 0xFF) / 255.0f;
+
+    // Get the LSB chunk
     float b = (colorVal & 0xFF) / 255.0f;
+
+    // Print to the file and flush quickly
     fprintf(fp, "%d=%.3f\n%d=%.3f\n%d=%.3f\n", REDPIN, r, GREENPIN, g, BLUEPIN, b);
     fflush(fp);
 }
